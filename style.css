@@ -1,0 +1,941 @@
+/* CSS Variables */
+:root {
+    --color-white: #FFFFFF;
+    --color-columbia-blue: #D2ECFF;
+    --color-baby-blue-eyes: #A5D8FF;
+    --color-little-boy-blue: #81A6D3;
+    --color-blue-yonder: #5D73A7;
+    --color-dark-cornflower-blue: #39407B;
+    --color-midnight-blue: #140D4F;
+    --color-russian-violet: #180C34;
+    --color-xiketic: #1C0B19;
+    --navbar-height: 55px;
+    --navbar-offset: 75px;
+    --main-body-height: 75vh;
+    --day-tab-width: 96px;
+}
+
+/* General Styling */
+html {
+    overflow-y: hidden !important;
+}
+
+body {
+    height: 100vh;
+}
+
+#navbar .columns {
+    height: var(--navbar-height);
+    position: relative;
+}
+
+#main-body-today .columns {
+    height: var(--main-body-height);
+}
+
+#main-body-today,
+#today-tab-background,
+#tomorrow-tab-background,
+#after-tomorrow-tab-background,
+#after-after-tomorrow-tab-background {
+    background-color: var(--color-white);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+}
+
+#main-body-today::after,
+#today-tab-background::after,
+#tomorrow-tab-background::after,
+#after-tomorrow-tab-background::after,
+#after-after-tomorrow-tab-background::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#today-tab-background {
+    height: 33vh;
+}
+
+#tomorrow-tab-background,
+#after-tomorrow-tab-background,
+#after-after-tomorrow-tab-background {
+    height: 35vh;
+}
+
+/* Backgrounds, text colors */
+.background-columbia-blue-gradient {
+    background: rgb(210,236,255);
+    background: linear-gradient(rgba(210,236,255,1) 0%, rgba(129,166,211,1) 100%);
+}
+
+.background-columbia-blue {
+    background-color: var(--color-columbia-blue);
+}
+
+.background-baby-blue-eyes {
+    background-color: var(--color-baby-blue-eyes);
+}
+
+.background-little-boy-blue {
+    background-color: var(--color-little-boy-blue);
+}
+
+.background-little-boy-blue-gradient {
+    background: rgb(129,166,211);
+    background: linear-gradient(rgba(93,115,167,1) 0%, rgba(28,11,25,1) 100%);
+}
+
+.background-blue-yonder {
+    background-color: var(--color-blue-yonder);
+}
+
+.background-dark-cornflower-blue {
+    background-color: var(--color-dark-cornflower-blue);
+}
+
+.background-dark-cornflower-blue-gradient {
+    background: rgb(57,64,123);
+    background: linear-gradient(rgba(57,64,123,1) 0%, rgba(28,11,25,1) 100%);
+}
+
+.background-midnight-blue {
+    background-color: var(--color-midnight-blue);
+}
+
+.background-midnight-blue-gradient {
+    background: rgb(20,13,79);
+    background: linear-gradient(rgba(20,13,79,1) 0%, rgba(28,11,25,1) 100%);
+}
+
+.background-russian-violet {
+    background-color: var(--color-russian-violet);
+}
+
+.background-xiketic {
+    background-color: var(--color-xiketic);
+}
+
+.text-columbia-blue {
+    color: var(--color-columbia-blue);
+}
+
+.text-baby-blue-eyes {
+    color: var(--color-baby-blue-eyes);
+}
+
+.text-blue-yonder {
+    color: var(--color-blue-yonder);
+}
+
+.text-dark-cornflower-blue {
+    color: var(--color-dark-cornflower-blue);
+}
+
+.text-midnight-blue {
+    color: var(--color-midnight-blue);
+}
+
+.text-russian-violet {
+    color: var(--color-russian-violet);
+}
+
+.text-xiketic {
+    color: var(--color-xiketic);
+}
+
+/* Utility classes */
+.following-day,
+.following-day-mobile {
+    position: absolute;
+    top: -1.25rem;
+    left: 1rem;
+    width: calc((100vw - 2rem) / 3);
+    line-height: 1.5rem;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.2s all ease;
+}
+
+.following-day:hover,
+.following-day-mobile:hover,
+.following-day:active,
+.following-day-mobile:active {
+    top: -1.5rem;
+    background-color: var(--color-baby-blue-eyes);
+    border-radius: 0;
+}
+
+.following-day-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1000px;
+    max-height: calc((100vh - var(--main-body-height) - var(--navbar-height)) / 2);
+}
+
+.following-day-mobile-offset-0 {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.following-day-mobile-offset-1 {
+    border-radius: 0;
+    left: calc(calc((100vw - 2rem) / 3) + 1rem);
+}
+
+.following-day-mobile-offset-2 {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    left: calc(2 * (calc((100vw - 2rem) / 3)) + 1rem);
+}
+
+.absolutely-on-top {
+    z-index: 101;
+}
+
+.on-top {
+    z-index: 10;
+}
+
+.move-forward {
+    z-index: 2;
+}
+
+.hide {
+    display: none !important;
+    opacity: 0;
+}
+
+.hide-behind {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.lower {
+    top: -1rem;
+}
+
+.block {
+    display: block;
+    height: 100%;
+    width: 100%;
+    transition: 0.2s all ease;
+}
+
+.contains-weather {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-columns {
+    flex-direction: column;
+}
+
+.contains-weather .image-main {
+    height: 225px;
+    width: 225px;
+}
+
+.contains-weather .image-secondary {
+    height: auto;
+    width: auto;
+}
+
+.image-minor {
+    max-height: 50px;
+    max-width: 50px;
+}
+
+.image-rounded {
+    max-height: 50px;
+    max-width: 50px;
+    border: 1px solid white;
+    background-color: rgb(165, 216, 255, 0.5);
+    border-radius: 10px;
+}
+
+.fade-in {
+    opacity: 0;
+    transition: 0.2s all ease;
+}
+
+.units-active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.location-search,
+.menu-items {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 1;
+    max-height: 10000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: z-index 0s ease max-height 0.25s ease, opacity 0.5s ease;
+}
+
+.menu-items {
+    justify-content: start;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+.display-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input {
+    background-color: transparent;
+    border-color: var(--color-white);
+    border: none;
+    border-bottom: 1px solid var(--color-white);
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1;
+    color: var(--color-white);
+    transition: all 0.2s ease;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1;
+    color: var(--color-white);
+    padding: 0;
+    padding-left: 1rem;
+    transition: all 0.2s ease;
+}
+
+.input:focus,
+.input:active,
+.input:hover,
+.button:focus,
+.button:focus:not(:active) {
+    border-color: var(--color-baby-blue-eyes);
+    box-shadow: none;
+    opacity: 1;
+    color: var(--color-white);
+    transition: all 0.2s ease;
+}
+
+a path {
+    transition: all 0.2s ease;
+}
+
+.button:focus,
+.button:focus:not(:active),
+.button:hover,
+a:hover path {
+    color: var(--color-baby-blue-eyes);
+}
+
+.input::placeholder {
+    color: var(--color-white);
+    opacity: 1;
+    transition: all 0.2s ease;
+}
+
+.input:focus::placeholder {
+    opacity: 0.5;
+    transition: all 0.2s ease;
+}
+
+.collapsed {
+    max-height: 0px;
+    opacity: 0;
+    z-index: 0;
+}
+
+.squeezed {
+    max-width: 0px;
+    overflow: hidden;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.overflow-scroll {
+    overflow: scroll;
+}
+
+/* loader */
+@keyframes spinUp {
+    0% { transform: rotate(0deg); border-bottom-color: var(--color-white); }
+    12.5% { transform: rotate(90deg); border-bottom-color: var(--color-columbia-blue); }
+    25% { transform: rotate(90deg); border-bottom-color: var(--color-columbia-blue); }
+    37.5% { transform: rotate(180deg); border-bottom-color: var(--color-baby-blue-eyes); }
+    50% { transform: rotate(180deg); border-bottom-color: var(--color-baby-blue-eyes); }
+    62.5% { transform: rotate(270deg); border-bottom-color: var(--color-little-boy-blue); }
+    75% { transform: rotate(270deg); border-bottom-color: var(--color-little-boy-blue); }
+    87.5% { transform: rotate(360deg); border-bottom-color: var(--color-blue-yonder); }
+    100% { transform: rotate(360deg); border-bottom-color: var(--color-white); }
+}
+
+@keyframes spinDown {
+    0% { transform: rotate(0deg); border-top-color: var(--color-columbia-blue); }
+    12.5% { transform: rotate(90deg); border-top-color: var(--color-baby-blue-eyes); }
+    25% { transform: rotate(90deg); border-top-color: var(--color-baby-blue-eyes); }
+    37.5% { transform: rotate(180deg); border-top-color: var(--color-little-boy-blue); }
+    50% { transform: rotate(180deg); border-top-color: var(--color-little-boy-blue); }
+    62.5% { transform: rotate(270deg); border-top-color: var(--color-blue-yonder); }
+    75% { transform: rotate(270deg); border-top-color: var(--color-blue-yonder); }
+    87.5% { transform: rotate(360deg); border-top-color: var(--color-white); }
+    100% { transform: rotate(360deg); border-top-color: var(--color-columbia-blue); }
+}
+
+@keyframes spinRight {
+    0% { transform: rotate(0deg); border-left-color: var(--color-baby-blue-eyes); }
+    12.5% { transform: rotate(90deg); border-left-color: var(--color-little-boy-blue); }
+    25% { transform: rotate(90deg); border-left-color: var(--color-little-boy-blue); }
+    37.5% { transform: rotate(180deg); border-left-color: var(--color-blue-yonder); }
+    50% { transform: rotate(180deg); border-left-color: var(--color-blue-yonder); }
+    62.5% { transform: rotate(270deg); border-left-color: var(--color-white); }
+    75% { transform: rotate(270deg); border-left-color: var(--color-white); }
+    87.5% { transform: rotate(360deg); border-left-color: var(--color-columbia-blue); }
+    100% { transform: rotate(360deg); border-left-color: var(--color-baby-blue-eyes); }
+}
+
+@keyframes spinLeft {
+    0% { transform: rotate(0deg); border-right-color: var(--color-little-boy-blue); }
+    12.5% { transform: rotate(90deg); border-right-color: var(--color-blue-yonder); }
+    25% { transform: rotate(90deg); border-right-color: var(--color-blue-yonder); }
+    37.5% { transform: rotate(180deg); border-right-color: var(--color-white); }
+    50% { transform: rotate(180deg); border-right-color: var(--color-white); }
+    62.5% { transform: rotate(270deg); border-right-color: var(--color-columbia-blue); }
+    75% { transform: rotate(270deg); border-right-color: var(--color-columbia-blue); }
+    87.5% { transform: rotate(360deg); border-right-color: var(--color-baby-blue-eyes); }
+    100% { transform: rotate(360deg); border-right-color: var(--color-little-boy-blue); }
+}
+
+@keyframes spin1 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.arrow-up {
+    display: inline-block;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 0; 
+    height: 0; 
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-bottom: 60px solid var(--color-white);
+    animation: spinUp 4s linear infinite;
+}
+
+.arrow-down {
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 0; 
+    height: 0; 
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-top: 60px solid var(--color-columbia-blue);
+    animation: spinDown 4s linear infinite;
+}
+
+.arrow-right {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0; 
+    height: 0; 
+    border-top: 60px solid transparent;
+    border-bottom: 60px solid transparent;
+    border-left: 60px solid var(--color-baby-blue-eyes);
+    animation: spinRight 4s linear infinite;
+}
+
+.arrow-left {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 60px;
+    width: 0; 
+    height: 0; 
+    border-top: 60px solid transparent;
+    border-bottom: 60px solid transparent; 
+    border-right:60px solid var(--color-little-boy-blue); 
+    animation: spinLeft 4s linear infinite;
+}
+.position {
+    position: relative;
+    height: 120px;
+    width: 120px;
+    animation: spin1 2s linear infinite;
+}
+
+/* MQs */
+@media screen and (min-height: 600px) {
+    
+    :root {
+        --navbar-height: 65px;
+    }
+
+    html {
+        font-size: 16.5px;
+    }
+
+    
+}
+
+@media screen and (min-height: 625px) {
+
+    #today-tab-background,
+    #tomorrow-tab-background,
+    #after-tomorrow-tab-background,
+    #after-after-tomorrow-tab-background {
+        height: 37.5vh;
+        padding: 2.5rem 0 !important;
+    }
+    
+}
+
+@media screen and (min-height: 675px) {
+
+    .contains-weather .image-main {
+        width: 275px;
+        height: 275px;
+    }
+
+    .image-rounded {
+        max-width: 60px;
+        max-height: 60px;
+    }
+
+}
+
+@media screen and (min-height: 725px) {
+
+    .image-rounded {
+        max-width: 67.5px;
+        max-height: 67.5px;
+    }
+
+    #main-today-text {
+        font-size: 1.6rem !important;
+    }
+
+    #main-today-temperature {
+        font-size: 3rem !important;
+    }
+
+    #main-today-day,
+    #main-today-time {
+        font-size: 1.3rem !important;
+    }
+
+    #main-today-conversion {
+        font-size: 0.8rem !important;
+    }
+
+
+}
+
+@media screen and (min-height: 775px) {
+    
+    :root {
+        --main-body-height: 80vh;
+    }
+    
+    .contains-weather .image-main {
+        width: auto;
+        height: 300px;
+    }
+
+    .image-rounded {
+        max-width: 60px;
+        max-height: 60px;
+    }
+
+    #today-tab-background,
+    #tomorrow-tab-background,
+    #after-tomorrow-tab-background,
+    #after-after-tomorrow-tab-background {
+        height: 30vh;
+        padding: 1.5rem 0 !important;
+    }
+
+    #today-weather-info > .is-3-mobile,
+    #tomorrow-weather-info > .is-3-mobile,
+    #after-tomorrow-weather-info > .is-3-mobile,
+    #after-after-tomorrow-weather-info > .is-3-mobile {
+        width: 50% !important;
+    }
+
+    #main-today-text {
+        font-size: 1.75rem !important;
+    }
+
+    #main-today-temperature {
+        font-size: 3.5rem !important;
+    }
+
+    #main-today-day,
+    #main-today-time {
+        font-size: 1.5rem !important;
+    }
+
+    #main-today-conversion {
+        font-size: 1rem !important;
+    }
+
+}
+
+@media screen and (min-height: 825px) {
+
+    .contains-weather .image-main {
+        width: auto;
+        height: 300px;
+    }
+
+    #today-tab-background,
+    #tomorrow-tab-background,
+    #after-tomorrow-tab-background,
+    #after-after-tomorrow-tab-background {
+        height: 35vh;
+        padding: 2.5rem 0 !important;
+    }
+
+}
+
+@media screen and (min-height: 875px) {
+
+    html {
+        font-size: 17px;
+    }
+
+}
+
+@media screen and (min-height: 925px) {
+
+    .image-rounded {
+        max-width: 75px;
+        max-height: 75px;
+    }
+
+}
+
+@media screen and (min-height: 1024px) {
+
+    :root {
+        --main-body-height: calc(0.8 * 1024px);
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .location-search,
+    .menu-items {
+        height: 1024px;
+    }
+
+    .app-container {
+        height: 1024px;
+        position: relative; 
+    }
+
+    .following-day-wrapper {
+        max-height: calc((1024px - var(--main-body-height) - var(--navbar-height)) / 2);
+    }
+    
+}
+
+@media screen and (min-height: 1024px) and (min-width: 768px) {
+
+    :root {
+        --main-body-height: calc(0.8 * 1024px);
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .app-container {
+        height: 1024px;
+        width: 768px;
+        position: relative;
+    }
+
+    #today-tab-background,
+    #tomorrow-tab-background,
+    #after-tomorrow-tab-background,
+    #after-after-tomorrow-tab-background {
+        height: auto !important;
+        padding: 3rem 0 !important;
+    }
+
+    .following-day-wrapper {
+        max-height: calc((1024px - var(--main-body-height) - var(--navbar-height)) / 2);
+    }
+
+    #tomorrow-summary + div,
+    #after-tomorrow-summary + div,
+    #after-after-tomorrow-summary + div {
+        height: calc(1024px - var(--navbar-offset) - var(--navbar-height)) !important;
+    }
+
+    .following-day,
+    .following-day-mobile {
+        width: calc((768px - 2rem) / 3);
+    }
+
+    .following-day-mobile-offset-1 {
+        left: calc(calc((768px - 2rem) / 3) + 1rem);
+    }
+
+    .following-day-mobile-offset-2 {
+        left: calc(2 * (calc((768px - 2rem) / 3)) + 1rem);
+    }
+
+    .location-search,
+    .menu-items {
+        width: 768px;
+        height: 1024px;
+    }
+
+}
+
+@media screen and (orientation: landscape) {
+
+    :root {
+        --navbar-height: 55px;
+    }
+
+    body {
+        overflow: scroll;
+    }
+
+    .following-day-wrapper {
+        height: 50px !important;
+        max-height: none;
+    }
+
+    #tomorrow-summary,
+    #after-tomorrow-summary,
+    #after-after-tomorrow-summary {
+        height: 110px;
+        max-height: none;
+    }
+
+    #today-tab-background,
+    #tomorrow-tab-background,
+    #after-tomorrow-tab-background,
+    #after-after-tomorrow-tab-background {
+        height: auto !important;
+        padding: .5rem 0 !important;
+    }
+
+    #main-body-today .columns {
+        height: auto;
+    }
+
+    .contains-weather .image-secondary {
+        height: 100px;
+        width: 100px;
+    }
+
+    .location-search,
+    .menu-items {
+        height: 100%;
+    }
+
+}
+
+@media screen and (orientation: landscape) and (min-height: 574px) {
+
+    html {
+        font-size: 16.5px;
+    }
+
+    .contains-weather .image-secondary {
+        height: 150px;
+        width: 150px;
+    }
+
+    .image-rounded {
+        max-width: 65px;
+        max-height: 65px;
+    }
+
+    #today-tab-background,
+    #tomorrow-tab-background,
+    #after-tomorrow-tab-background,
+    #after-after-tomorrow-tab-background {
+        height: auto !important;
+        padding: 0 !important;
+    }
+
+    #main-body-today .columns {
+        height: var(--main-body-height);
+    }
+
+    .following-day-wrapper {
+        max-height: calc((100vh - var(--main-body-height) - var(--navbar-height)) / 2);
+    }
+
+    #tomorrow-summary,
+    #after-tomorrow-summary,
+    #after-after-tomorrow-summary {
+        height: 100%;
+    }
+
+    #tomorrow-summary + div,
+    #after-tomorrow-summary + div,
+    #after-after-tomorrow-summary + div {
+        height: calc(100vh - var(--navbar-offset) - var(--navbar-height)) !important;
+    }
+
+}
+
+@media screen and (orientation: landscape) and (min-height: 650px) {
+
+    #today-tab-background,
+    #tomorrow-tab-background,
+    #after-tomorrow-tab-background,
+    #after-after-tomorrow-tab-background {
+        height: auto !important;
+        padding: 1rem 0 !important;
+    }
+
+}
+
+@media screen and (orientation: landscape) and (min-height: 700px) {
+
+    html {
+        font-size: 17px;
+    }
+
+    .contains-weather .image-secondary {
+        height: 200px;
+        width: 200px;
+    }
+
+    .image-rounded {
+        max-width: 75px;
+        max-height: 75px;
+    }
+
+}
+
+@media screen and (orientation: landscape) and (min-width: 1024px) {
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .app-container {
+        width: 1024px;
+        height: 100%;
+        position: relative;
+    }
+
+    .location-search,
+    .menu-items {
+        width: 1024px;
+    }
+
+    .following-day,
+    .following-day-mobile {
+        width: calc((1024px - 2rem) / 3);
+    }
+
+    .following-day-mobile-offset-1 {
+        left: calc(calc((1024px - 2rem) / 3) + 1rem);
+    }
+
+    .following-day-mobile-offset-2 {
+        left: calc(2 * (calc((1024px - 2rem) / 3)) + 1rem);
+    }
+
+}
+
+@media screen and (orientation: landscape) and (min-width: 1024px) and (min-height: 768px) {
+
+    html {
+        font-size: 18px;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .app-container {
+        overflow: scroll;
+        width: 1024px;
+        height: 768px;
+        position: relative;
+    }
+
+    #today-tab-background,
+    #tomorrow-tab-background,
+    #after-tomorrow-tab-background,
+    #after-after-tomorrow-tab-background {
+        height: auto !important;
+        padding: 2rem !important;
+    }
+    
+    .contains-weather .image-secondary {
+        height: 250px;
+        width: 250px;
+    }
+
+    .image-rounded {
+        max-width: 75px;
+        max-height: 75px;
+    }
+
+    #tomorrow-summary + div,
+    #after-tomorrow-summary + div,
+    #after-after-tomorrow-summary + div {
+        height: auto !important;
+    }
+
+    #tomorrow-summary,
+    #after-tomorrow-summary,
+    #after-after-tomorrow-summary {
+        height: 100px;
+    }
+
+}

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>MeteoWorld</title>
+</head>
+<body class="">
+    <div class="app-container overflow-hidden">
+        <div class="background-xiketic has-text-white is-relative" id="navbar">
+            <div class="columns is-mobile m-0 has-text-centered is-vcentered is-multiline hide">
+                <div class="column is-2-mobile is-2" id="location-icon">
+                    <span class="icon">
+                        <i class="fas fa-map-marker-alt is-clickable"></i>
+                    </span>
+                    <span class="icon hide">
+                        <i class="fas fa-arrow-left is-clickable"></i>
+                    </span>
+                </div>
+                <div class="column is-8-mobile is-8 has-text-centered" id="city"></div>
+                <div class="column is-2-mobile is-2" id="menu-plus-icon">
+                    <span class="icon">
+                        <i class="fas fa-plus is-clickable"></i>
+                    </span>
+                    <span class="icon hide">
+                        <i class="fas fa-minus is-clickable"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="background-xiketic has-text-white location-search">
+            <div class="has-text-centered is-size-3 pt-5 mt-5" id="logo">MeteoWorld</div>
+            <form action="" id="city-form" autocomplete="off">
+                <div class="field has-addons">
+                    <div class="control">
+                        <input id="city-input" name="city" class="input has-text-centered" type="text" placeholder="What's the weather like in?">
+                    </div>
+                    <p class="control squeezed">
+                        <button class="button" type="submit">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </p>
+                </div>
+            </form>
+            <div class="position hide">
+                <div class="arrow-up"></div>
+                <div class="arrow-down"></div>
+                <div class="arrow-left"></div>
+                <div class="arrow-right"></div>
+            </div>
+            <div class="hide error-msg is-size-4"></div>
+            <div class="has-text-centered is-size-3 pb-5 mb-5" id="social">
+                <a href="https://www.facebook.com/" target="_blank" class="p-2"><i class="has-text-white fab fa-facebook"></i></a>
+                <a href="https://twitter.com" target="_blank" class="p-2"><i class="has-text-white fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" class="p-2"><i class="has-text-white fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="background-xiketic has-text-white menu-items collapsed overflow-scroll">
+            <div class="columns is-mobile m-0 mt-5 p-2 pt-5 is-multiline has-text-white is-relative">
+                <div class="column is-12-mobile is-12 p-2 is-vcentered display-flex">
+                    <p class="is-size-4 has-text-left">My Cities</p>
+                    <p class="is-size-6 has-text-right text-baby-blue-eyes is-clickable">Edit</p>
+                </div>
+                <div class="column is-12-mobile is-12 is-size-5 p-2 is-vcentered">
+                    <span class="icon">
+                        <i class="fas fa-thumbtack"></i>
+                    </span>
+                    <span class="has-text-left pl-1 is-clickable">Calgary</span>
+                </div>
+                <div class="column is-12-mobile is-12 is-size-5 p-2 is-vcentered">
+                    <span class="icon">
+                        <i class="far fa-compass"></i>
+                    </span>
+                    <span class="has-text-left pl-1 is-clickable">Kozienice</span>
+                </div>
+                <div class="column is-12-mobile is-12 is-size-5 p-2">
+                    <span class="icon">
+                        <i class="fas fa-plus-circle text-baby-blue-eyes is-clickable"></i>
+                    </span>
+                </div>
+            </div>
+            <hr class="m-1 px-1">
+            <div class="columns is-mobile m-0 p-2 is-multiline has-text-white is-relative is-vcentered">
+                <div class="column is-12-mobile is-12 p-2 display-flex">
+                    <p class="is-size-4 has-text-left">MeteoWorld</p>
+                    <p class="is-size-6 has-text-right">v1.0</p>
+                </div>
+                <div class="column is-9-mobile is-9 is-size-5 p-2">
+                    <span class="icon">
+                        <i class="fas fa-cog"></i>
+                    </span>
+                    <span class="has-text-left pl-1 is-clickable">Options</span>
+                </div>
+                <div class="column is-3-mobile is-3 is-size-5 p-2 has-text-right">
+                    <span class="icon">
+                        <i class="fas fa-chevron-right is-clickable"></i>
+                    </span>
+                </div>
+                <div class="column is-9-mobile is-9 is-size-5 p-2">
+                    <span class="icon">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                    <span class="has-text-left pl-1 is-clickable">More Info</span>
+                </div>
+                <div class="column is-3-mobile is-3 is-size-5 p-2 has-text-right">
+                    <span class="icon">
+                        <i class="fas fa-chevron-right is-clickable"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="" id="main-body-today">
+            <div class="columns is-mobile m-0 is-multiline is-centered has-text-centered has-text-white is-relative move-forward">
+                <div class="column is-12-mobile is-12 p-2 contains-weather">
+                    <figure class="image">
+                        <img id="today-main-image" class="image-main" src="">
+                    </figure>
+                </div>
+                <div class="column is-12-mobile is-12 py-0">
+                    <span class="is-size-5" id="main-today-text"></span>
+                </div>
+                <div class="column is-12-mobile is-12 py-0">
+                    <span class="is-size-1 has-text-weight-bold" id="main-today-temperature"></span>
+                </div>
+                <div class="column is-12-mobile is-12 py-0">
+                    <span class="is-size-6" id="main-today-day"></span>
+                </div>
+                <div class="column is-12-mobile is-12 py-0">
+                    <span class="is-size-6" id="main-today-time"></span>
+                </div>
+                <div class="column is-12-mobile is-12 has-text-right pt-0 pb-1">
+                    <span class="is-size-7" id="main-today-conversion">
+                        <span class="p-1 is-clickable units-active">&deg;C</span>
+                        |
+                        <span class="p-1 is-clickable">&deg;F</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class=" is-relative">
+            <div class="background-columbia-blue-gradient is-relative on-top following-day-wrapper pb-5">
+                <div class="following-day background-columbia-blue p-1 has-text-centered on-top">
+                    <span class="is-size-7 block" id="today-more-details">
+                        Today
+                        <i class="fas fa-chevron-up is-clickable is-size-7"></i>
+                    </span>
+                </div>
+                <div class="columns is-mobile m-0 hide">
+                    <div class="column is-12-mobile is-12 p-0">
+                        <div class="columns is-multiline is-mobile m-0 has-text-white pb-2 mb-2 is-vcentered" id="today-tab-background">
+                            <div class="column is-7-mobile is-7 p-0 move-forward">
+                                <p class="is-size-5 p-0 pt-5 pb-2 has-text-centered capitalize" id="today-tab-description"></p>
+                                <div class="columns is-mobile m-0 py-1 px-1 has-text-centered">
+                                    <div class="column is-6-mobile is-6 p-0">
+                                        <p class="is-size-6">
+                                            Current
+                                        </p>
+                                        <span class="is-size-3 has-text-weight-bold" id="today-tab-current"></span>
+                                    </div>
+                                    <div class="column is-6-mobile is-6 p-0">
+                                        <p class="is-size-6">
+                                            Feels Like
+                                        </p>
+                                        <span class="is-size-3 has-text-weight-bold" id="today-tab-feels-like"></span>
+                                    </div>
+                                </div>
+                                <p class="is-size-6 p-0 py-1 has-text-centered">
+                                    High 
+                                    <span class="is-size-6 has-text-weight-bold" id="today-tab-high"></span>
+                                    /
+                                    Low 
+                                    <span class="is-size-6 has-text-weight-bold" id="today-tab-low"></span>
+                                </p>
+                            </div>
+                            <div class="column is-5-mobile is-5 p-2 contains-weather move-forward">
+                                <figure class="image">
+                                    <img id="today-tab-image" class="image-secondary" src="">
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="columns is-mobile m-0 is-multiline" id="today-weather-info">
+                            <div class="column is-3-mobile is-3 p-0">
+                                <div class="contains-weather flex-columns">
+                                    <p class="is-size-6">
+                                        Clouds
+                                    </p>
+                                    <span class="is-block is-size-7 has-text-weight-bold" id="today-tab-clouds"></span>
+                                    <figure class="image p-0 py-2">
+                                        <img class="p-1 image-rounded" src="icons/clouds.png">
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="column is-3-mobile is-3 p-0">
+                                <div class="contains-weather flex-columns">
+                                    <p class="is-size-6">
+                                        Humidity
+                                    </p>
+                                    <span class="is-block is-size-7 has-text-weight-bold" id="today-tab-humidity"></span>
+                                    <figure class="image p-0 py-2">
+                                        <img class="p-1 image-rounded" src="icons/humidity.png">
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="column is-3-mobile is-3 p-0">
+                                <div class="contains-weather flex-columns">
+                                    <p class="is-size-6">
+                                        Wind
+                                    </p>
+                                    <span class="is-block is-size-7" id="today-tab-wind">
+                                        <span class="has-text-weight-bold"></span>
+                                        |
+                                        <span class="has-text-weight-bold"></span>
+                                    </span>
+                                    <figure class="image p-0 py-2">
+                                        <img class="p-1 image-rounded" src="icons/wind.png">
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="column is-3-mobile is-3 p-0">
+                                <div class="contains-weather flex-columns">
+                                    <p class="is-size-6">
+                                        Pressure
+                                    </p>
+                                    <span class="is-block is-size-7 has-text-weight-bold" id="today-tab-pressure"></span>
+                                    <figure class="image p-0 py-2">
+                                        <img class="p-1 image-rounded" src="icons/pressure.png">
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="m-2">
+                        <div class="columns is-mobile m-0 has-text-centered is-vcentered">
+                            <div class="column is-4-mobile is-4 p-0 contains-weather flex-columns">
+                                <figure class="image p-0 py-2">
+                                    <img class="p-1 image-rounded" src="icons/sunrise.png">
+                                </figure>
+                                <span class="is-size-7" id="today-tab-sunrise"></span>
+                            </div>
+                            <div class="column is-4-mobile is-4 p-0">
+                                <p class="is-size-7">
+                                    <span class="has-text-weight-bold">
+                                        Day:
+                                    </span>
+                                    <span class="is-size-7" id="today-tab-day-duration"></span>
+                                </p>
+                                <p class="is-size-7">
+                                    <span class="has-text-weight-bold">
+                                        Night:
+                                    </span>
+                                    <span class="is-size-7" id="today-tab-night-duration"></span>
+                                </p>
+                            </div>
+                            <div class="column is-4-mobile is-4 p-0 contains-weather flex-columns">
+                                <figure class="image p-0 py-2">
+                                    <img class="p-1 image-rounded" src="icons/sunset.png">
+                                </figure>
+                                <span class="is-size-7" id="today-tab-sunset"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="is-relative on-top" id="following-days-container">
+                <div class="has-text-white background-little-boy-blue-gradient following-day-wrapper on-top">
+                    <div class="following-day-mobile background-blue-yonder p-1 has-text-centered on-top following-day-mobile-offset-0">
+                        <span class="is-size-7 block" id="tomorrow-more-details">Tomorrow</span>
+                    </div>
+                    <div class="columns is-mobile m-0 is-vcentered hide" id="tomorrow-summary">
+                        <div class="column is-4-mobile is-4 p-0">
+                            <p class="is-size-6 px-4 py-3 capitalize has-text-centered" id="tomorrow-summary-description"></p>
+                        </div>
+                        <div class="column is-4-mobile is-4 p-0 has-text-centered">
+                            <p class="is-size-6">High</p>
+                            <span class="is-size-6 has-text-weight-bold" id="tomorrow-summary-current"></span>
+                        </div>
+                        <div class="column is-4-mobile is-4 p-0 contains-weather flex-columns">
+                            <figure class="image p-0 py-1">
+                                <img id="tomorrow-summary-weather" class="p-1 image-rounded" src="">
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="columns is-mobile m-0 hide">
+                        <div class="column is-12-mobile is-12 p-0">
+                            <div class="columns is-multiline is-mobile m-0 has-text-white pt-5 pb-5 mb-2 is-vcentered" id="tomorrow-tab-background">
+                                <div class="column is-7-mobile is-7 p-0 move-forward">
+                                    <p class="is-size-5 p-0 pt-5 pb-2 has-text-centered capitalize" id="tomorrow-tab-description"></p>
+                                    <div class="columns is-mobile m-0 py-1 px-1 has-text-centered">
+                                        <div class="column is-6-mobile is-6 p-0">
+                                            <p class="is-size-6">
+                                                High
+                                            </p>
+                                            <span class="is-size-3 has-text-weight-bold" id="tomorrow-tab-high"></span>
+                                        </div>
+                                        <div class="column is-6-mobile is-6 p-0">
+                                            <p class="is-size-6">
+                                                Low
+                                            </p>
+                                            <span class="is-size-3 has-text-weight-bold" id="tomorrow-tab-low"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column is-5-mobile is-5 p-2 contains-weather move-forward">
+                                    <figure class="image">
+                                        <img id="tomorrow-tab-image" class="image-secondary" src="">
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="columns is-mobile m-0 is-multiline" id="tomorrow-weather-info">
+                                <div class="column is-3-mobile is-3 p-0">
+                                    <div class="contains-weather flex-columns">
+                                        <p class="is-size-6">
+                                            Clouds
+                                        </p>
+                                        <span class="is-block is-size-7 has-text-weight-bold" id="tomorrow-tab-clouds"></span>
+                                        <figure class="image p-0 py-2">
+                                            <img class="p-1 image-rounded" src="icons/clouds.png">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="column is-3-mobile is-3 p-0">
+                                    <div class="contains-weather flex-columns">
+                                        <p class="is-size-6">
+                                            Humidity
+                                        </p>
+                                        <span class="is-block is-size-7 has-text-weight-bold" id="tomorrow-tab-humidity"></span>
+                                        <figure class="image p-0 py-2">
+                                            <img class="p-1 image-rounded" src="icons/humidity.png">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="column is-3-mobile is-3 p-0">
+                                    <div class="contains-weather flex-columns">
+                                        <p class="is-size-6">
+                                            Wind
+                                        </p>
+                                        <span class="is-block is-size-7" id="tomorrow-tab-wind">
+                                            <span class="has-text-weight-bold"></span>
+                                            |
+                                            <span class="has-text-weight-bold"></span>
+                                        </span>
+                                        <figure class="image p-0 py-2">
+                                            <img class="p-1 image-rounded" src="icons/wind.png">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="column is-3-mobile is-3 p-0">
+                                    <div class="contains-weather flex-columns">
+                                        <p class="is-size-6">
+                                            Pressure
+                                        </p>
+                                        <span class="is-block is-size-7 has-text-weight-bold" id="tomorrow-tab-pressure"></span>
+                                        <figure class="image p-0 py-2">
+                                            <img class="p-1 image-rounded" src="icons/pressure.png">
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="m-3">
+                            <div class="columns is-mobile m-0 pb-2 has-text-centered is-vcentered">
+                                <div class="column is-4-mobile is-4 p-0 contains-weather flex-columns">
+                                    <figure class="image p-0 py-2">
+                                        <img class="p-1 image-rounded" src="icons/sunrise.png">
+                                    </figure>
+                                    <span class="is-size-7" id="tomorrow-tab-sunrise"></span>
+                                </div>
+                                <div class="column is-4-mobile is-4 p-0">
+                                    <p class="is-size-7">
+                                        <span class="has-text-weight-bold">
+                                            Day:
+                                        </span>
+                                        <span class="is-size-7" id="tomorrow-tab-day-duration"></span>
+                                    </p>
+                                    <p class="is-size-7">
+                                        <span class="has-text-weight-bold">
+                                            Night:
+                                        </span>
+                                        <span class="is-size-7" id="tomorrow-tab-night-duration"></span>
+                                    </p>
+                                </div>
+                                <div class="column is-4-mobile is-4 p-0 contains-weather flex-columns">
+                                    <figure class="image p-0 py-2">
+                                        <img class="p-1 image-rounded" src="icons/sunset.png">
+                                    </figure>
+                                    <span class="is-size-7" id="tomorrow-tab-sunset"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="has-text-white background-dark-cornflower-blue-gradient following-day-wrapper">
+                    <div class="following-day-mobile following-day-mobile-offset-1 background-dark-cornflower-blue p-1 has-text-centered on-top">
+                        <span class="is-size-7 block" id="after-tomorrow-more-details"></span>
+                    </div>
+                    <div class="columns is-mobile m-0 is-vcentered hide" id="after-tomorrow-summary">
+                        <div class="column is-4-mobile is-4 p-0">
+                            <p class="is-size-6 px-4 py-3 capitalize has-text-centered" id="after-tomorrow-summary-description"></p>
+                        </div>
+                        <div class="column is-4-mobile is-4 p-0 has-text-centered">
+                            <p class="is-size-6">High</p>
+                            <span class="is-size-6 has-text-weight-bold" id="after-tomorrow-summary-current"></span>
+                        </div>
+                        <div class="column is-4-mobile is-4 p-0 contains-weather flex-columns">
+                            <figure class="image p-0 py-1">
+                                <img id="after-tomorrow-summary-weather" class="p-1 image-rounded" src="">
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="columns is-mobile m-0 hide">
+                        <div class="column is-12-mobile is-12 p-0">
+                            <div class="columns is-multiline is-mobile m-0 has-text-white pt-5 pb-5 mb-2 is-vcentered" id="after-tomorrow-tab-background">
+                                <div class="column is-7-mobile is-7 p-0 move-forward">
+                                    <p class="is-size-5 p-0 pt-5 pb-2 has-text-centered capitalize" id="after-tomorrow-tab-description"></p>
+                                    <div class="columns is-mobile m-0 py-1 px-1 has-text-centered">
+                                        <div class="column is-6-mobile is-6 p-0">
+                                            <p class="is-size-6">
+                                                High
+                                            </p>
+                                            <span class="is-size-3 has-text-weight-bold" id="after-tomorrow-tab-high"></span>
+                                        </div>
+                                        <div class="column is-6-mobile is-6 p-0">
+                                            <p class="is-size-6">
+                                                Low
+                                            </p>
+                                            <span class="is-size-3 has-text-weight-bold" id="after-tomorrow-tab-low"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column is-5-mobile is-5 p-2 contains-weather move-forward">
+                                    <figure class="image">
+                                        <img id="after-tomorrow-tab-image" class="image-secondary" src="">
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="columns is-mobile m-0 is-multiline" id="after-tomorrow-weather-info">
+                                <div class="column is-3-mobile is-3 p-0">
+                                    <div class="contains-weather flex-columns">
+                                        <p class="is-size-6">
+                                            Clouds
+                                        </p>
+                                        <span class="is-block is-size-7 has-text-weight-bold" id="after-tomorrow-tab-clouds"></span>
+                                        <figure class="image p-0 py-2">
+                                            <img class="p-1 image-rounded" src="icons/clouds.png">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="column is-3-mobile is-3 p-0">
+                                    <div class="contains-weather flex-columns">
+                                        <p class="is-size-6">
+                                            Humidity
+                                        </p>
+                                        <span class="is-block is-size-7 has-text-weight-bold" id="after-tomorrow-tab-humidity"></span>
+                                        <figure class="image p-0 py-2">
+                                            <img class="p-1 image-rounded" src="icons/humidity.png">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="column is-3-mobile is-3 p-0">
+                                    <div class="contains-weather flex-columns">
+                                        <p class="is-size-6">
+                                            Wind
+                                        </p>
+                                        <span class="is-block is-size-7" id="after-tomorrow-tab-wind">
+                                            <span class="has-text-weight-bold"></span>
+                                            |
+                                            <span class="has-text-weight-bold"></span>
+                                        </span>
+                                        <figure class="image p-0 py-2">
+                                            <img class="p-1 image-rounded" src="icons/wind.png">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="column is-3-mobile is-3 p-0">
+                                    <div class="contains-weather flex-columns">
+                                        <p class="is-size-6">
+                                            Pressure
+                                        </p>
+                                        <span class="is-block is-size-7 has-text-weight-bold" id="after-tomorrow-tab-pressure"></span>
+                                        <figure class="image p-0 py-2">
+                                            <img class="p-1 image-rounded" src="icons/pressure.png">
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="m-3">
+                            <div class="columns is-mobile m-0 pb-2 has-text-centered is-vcentered">
+                                <div class="column is-4-mobile is-4 p-0 contains-weather flex-columns">
+                                    <figure class="image p-0 py-2">
+                                        <img class="p-1 image-rounded" src="icons/sunrise.png">
+                                    </figure>
+                                    <span class="is-size-7" id="after-tomorrow-tab-sunrise"></span>
+                                </div>
+                                <div class="column is-4-mobile is-4 p-0">
+                                    <p class="is-size-7">
+                                        <span class="has-text-weight-bold">
+                                            Day:
+                                        </span>
+                                        <span class="is-size-7" id="after-tomorrow-tab-day-duration"></span>
+                                    </p>
+                                    <p class="is-size-7">
+                                        <span class="has-text-weight-bold">
+                                            Night:
+                                        </span>
+                                        <span class="is-size-7" id="after-tomorrow-tab-night-duration"></span>
+                                    </p>
+                                </div>
+                                <div class="column is-4-mobile is-4 p-0 contains-weather flex-columns">
+                                    <figure class="image p-0 py-2">
+                                        <img class="p-1 image-rounded" src="icons/sunset.png">
+                                    </figure>
+                                    <span class="is-size-7" id="after-tomorrow-tab-sunset"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="has-text-white background-midnight-blue-gradient following-day-wrapper">
+                    <div class="following-day-mobile following-day-mobile-offset-2 background-midnight-blue p-1 has-text-centered on-top">
+                        <span class="is-size-7 block" id="after-after-tomorrow-more-details"></span>
+                    </div>
+                    <div class="columns is-mobile m-0 is-vcentered hide" id="after-after-tomorrow-summary">
+                        <div class="column is-4-mobile is-4 p-0">
+                            <p class="is-size-6 px-4 py-3 capitalize has-text-centered" id="after-after-tomorrow-summary-description"></p>
+                        </div>
+                        <div class="column is-4-mobile is-4 p-0 has-text-centered">
+                            <p class="is-size-6">High</p>
+                            <span class="is-size-6 has-text-weight-bold" id="after-after-tomorrow-summary-current"></span>
+                        </div>
+                        <div class="column is-4-mobile is-4 p-0 contains-weather flex-columns">
+                            <figure class="image p-0 py-1">
+                                <img id="after-after-tomorrow-summary-weather" class="p-1 image-rounded" src="">
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="columns is-mobile m-0 hide">
+                        <div class="column is-12-mobile is-12 p-0">
+                            <div class="columns is-multiline is-mobile m-0 has-text-white pt-5 pb-5 mb-2 is-vcentered" id="after-after-tomorrow-tab-background">
+                                <div class="column is-7-mobile is-7 p-0 move-forward">
+                                    <p class="is-size-5 p-0 pt-5 pb-2 has-text-centered capitalize" id="after-after-tomorrow-tab-description"></p>
+                                    <div class="columns is-mobile m-0 py-1 px-1 has-text-centered">
+                                        <div class="column is-6-mobile is-6 p-0">
+                                            <p class="is-size-6">
+                                                High
+                                            </p>
+                                            <span class="is-size-3 has-text-weight-bold" id="after-after-tomorrow-tab-high"></span>
+                                        </div>
+                                        <div class="column is-6-mobile is-6 p-0">
+                                            <p class="is-size-6">
+                                                Low
+                                            </p>
+                                            <span class="is-size-3 has-text-weight-bold" id="after-after-tomorrow-tab-low"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column is-5-mobile is-5 p-2 contains-weather move-forward">
+                                    <figure class="image">
+                                        <img id="after-after-tomorrow-tab-image" class="image-secondary" src="">
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="columns is-mobile m-0 is-multiline" id="after-after-tomorrow-weather-info">
+                                <div class="column is-3-mobile is-3 p-0">
+                                    <div class="contains-weather flex-columns">
+                                        <p class="is-size-6">
+                                            Clouds
+                                        </p>
+                                        <span class="is-block is-size-7 has-text-weight-bold" id="after-after-tomorrow-tab-clouds"></span>
+                                        <figure class="image p-0 py-2">
+                                            <img class="p-1 image-rounded" src="icons/clouds.png">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="column is-3-mobile is-3 p-0">
+                                    <div class="contains-weather flex-columns">
+                                        <p class="is-size-6">
+                                            Humidity
+                                        </p>
+                                        <span class="is-block is-size-7 has-text-weight-bold" id="after-after-tomorrow-tab-humidity"></span>
+                                        <figure class="image p-0 py-2">
+                                            <img class="p-1 image-rounded" src="icons/humidity.png">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="column is-3-mobile is-3 p-0">
+                                    <div class="contains-weather flex-columns">
+                                        <p class="is-size-6">
+                                            Wind
+                                        </p>
+                                        <span class="is-block is-size-7" id="after-after-tomorrow-tab-wind">
+                                            <span class="has-text-weight-bold"></span>
+                                            |
+                                            <span class="has-text-weight-bold"></span>
+                                        </span>
+                                        <figure class="image p-0 py-2">
+                                            <img class="p-1 image-rounded" src="icons/wind.png">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="column is-3-mobile is-3 p-0">
+                                    <div class="contains-weather flex-columns">
+                                        <p class="is-size-6">
+                                            Pressure
+                                        </p>
+                                        <span class="is-block is-size-7 has-text-weight-bold" id="after-after-tomorrow-tab-pressure"></span>
+                                        <figure class="image p-0 py-2">
+                                            <img class="p-1 image-rounded" src="icons/pressure.png">
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="m-3">
+                            <div class="columns is-mobile m-0 pb-2 has-text-centered is-vcentered">
+                                <div class="column is-4-mobile is-4 p-0 contains-weather flex-columns">
+                                    <figure class="image p-0 py-2">
+                                        <img class="p-1 image-rounded" src="icons/sunrise.png">
+                                    </figure>
+                                    <span class="is-size-7" id="after-after-tomorrow-tab-sunrise"></span>
+                                </div>
+                                <div class="column is-4-mobile is-4 p-0">
+                                    <p class="is-size-7">
+                                        <span class="has-text-weight-bold">
+                                            Day:
+                                        </span>
+                                        <span class="is-size-7" id="after-after-tomorrow-tab-day-duration"></span>
+                                    </p>
+                                    <p class="is-size-7">
+                                        <span class="has-text-weight-bold">
+                                            Night:
+                                        </span>
+                                        <span class="is-size-7" id="after-after-tomorrow-tab-night-duration"></span>
+                                    </p>
+                                </div>
+                                <div class="column is-4-mobile is-4 p-0 contains-weather flex-columns">
+                                    <figure class="image p-0 py-2">
+                                        <img class="p-1 image-rounded" src="icons/sunset.png">
+                                    </figure>
+                                    <span class="is-size-7" id="after-after-tomorrow-tab-sunset"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="http://cdn.date-fns.org/v1.9.0/date_fns.min.js"></script>
+    <script src="ui.js"></script>
+    <script src="classes.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
